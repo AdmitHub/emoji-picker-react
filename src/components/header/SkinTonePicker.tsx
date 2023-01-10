@@ -87,7 +87,10 @@ export function SkinTonePicker({
                 transform: clsx(
                   vertical
                     ? `translateY(-${i * (isOpen ? ITEM_SIZE : 0)}px)`
-                    : `translateX(-${i * (isOpen ? ITEM_SIZE : 0)}px)`,
+                    // library fans out colors to the left of the selected one
+                    // it was requested that the selected one should move left and the rest of the colors should fan out to the right
+                    // to aid with tab-accessibility
+                    : `translateX(${(i * (isOpen ? ITEM_SIZE : 0)) - (isOpen ? ((skinToneVariations.length - 1) * ITEM_SIZE) : 0)}px)`,
                   isOpen && active && 'scale(1.3)'
                 )
               }}

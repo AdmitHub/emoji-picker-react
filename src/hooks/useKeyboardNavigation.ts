@@ -81,14 +81,16 @@ function usePickerMainKeyboardEvents() {
         switch (key) {
           // eslint-disable-next-line no-fallthrough
           case KeyboardEvents.Escape:
-            event.preventDefault();
+            // event.preventDefault()
             if (hasOpenToggles()) {
               closeAllOpenToggles();
+              event.stopPropagation()
               return;
             }
             clearSearch();
             scrollTo(0);
             focusSearchInput();
+            event.stopPropagation()
             break;
         }
       },
