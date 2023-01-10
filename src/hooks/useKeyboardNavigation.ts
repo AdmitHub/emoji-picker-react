@@ -84,11 +84,13 @@ function usePickerMainKeyboardEvents() {
             event.preventDefault();
             if (hasOpenToggles()) {
               closeAllOpenToggles();
+              event.stopPropagation()
               return;
             }
             clearSearch();
             scrollTo(0);
             focusSearchInput();
+            event.stopPropagation()
             break;
         }
       },
